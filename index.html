@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Domineering Game</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="background">
+    <h1>Domineering Game</h1>
+
+    <div class="rules-box">
+      Rules
+      <div class="rules-popup">
+        <h3>How to Play</h3>
+        <ul>
+          <li>Player 1 places tiles <strong>Horizontally</strong>.</li>
+          <li>Player 2 places tiles <strong>Vertically</strong>.</li>
+          <li>Players take turns placing 2-cell dominoes.</li>
+          <li>First player to block the other wins!</li>
+        </ul>
+      </div>
+    </div>00
+
+    <div class="setup">
+      <label for="mode">Game Mode:</label>
+      <select id="mode">
+        <option value="pvp">Player vs Player</option>
+        <option value="ai">Player vs Computer
+          
+        </option>
+      </select>
+
+      <div id="difficultyContainer">
+        <label for="difficulty">AI Difficulty:</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
+      <label for="rows">Rows:</label>
+      <input type="number" id="rows" value="5" min="3" max="10">
+
+      <label for="cols">Columns:</label>
+      <input type="number" id="cols" value="5" min="3" max="10">
+
+      <label for="player1Orientation">Player 1 Orientation:</label>
+      <select id="player1Orientation">
+        <option value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+      </select>
+
+      <button id="startBtn">Start Game</button>
+    </div>
+
+    <div class="controls hidden">
+      <div id="status"></div>
+      <div id="gameBoard"></div>
+      <button id="restartBtn">Restart</button>
+    </div>
+  </div>
+
+  <audio id="moveSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" preload="auto"></audio>
+  <audio id="winSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #FEFBE3;
+  color: rgb(255, 247, 15);
+  overflow-x: hidden;
+}
+
+.background {
+  min-height: 100vh;
+  padding: 30px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+h1 {
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.setup, .controls {
+  background: rgba(111, 110, 28, 0.764);
+  padding: 30px 20px;
+  border-radius: 20px;
+  margin: 30px auto 0;
+  width: 100%;
+  max-width: 850px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin: 15px 0 5px;
+  font-size: 1.2em;
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+  text-align: left;
+}
+
+select, input[type="number"] {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1em;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+  border: none;
+}
+
+button {
+  padding: 12px 25px;
+  margin-top: 20px;
+  font-size: 18px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0077cc;
+}
+
+#gameBoard {
+  display: grid;
+  gap: 4px;
+  margin: 20px auto;
+  justify-content: center;
+  background-color: #f9d423;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  background: #fff8c4;
+  border: 1px solid #de9517;
+  transition: transform 0.2s, background-color 0.3s;
+  border-radius: 8px;
+}
+
+.cell:hover {
+  transform: scale(1.05);
+}
+
+.hover-preview {
+  background-color: rgba(0, 255, 255, 0.4) !important;
+}
+
+.blue {
+  background-color: rgba(0, 170, 255, 0.9);
+}
+
+.red {
+  background-color: rgba(255, 68, 68, 0.9);
+}
+
+.placed {
+  animation: zoomIn 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+#winner, .winner-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ffe600;
+  text-shadow: 2px 2px 6px #000;
+  animation: flash 1s ease infinite alternate;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@keyframes flash {
+  0% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .cell {
+    width: 50px;
+    height: 50px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .setup, .controls {
+    padding: 20px;
+  }
+
+  label, button, select, input[type="number"] {
+    font-size: 1em;
+  }
+
+  .rules-popup {
+    width: 90vw;
+    right: 5%;
+    font-size: 1rem;
+  }
+}
+
+/* ==== Rules Styling ==== */
+.rules-box {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+  z-index: 99;
+  background-color: rgb(26 72 127 / 82%);
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.rules-box:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.rules-popup {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #fff;
+  color: #333;
+  padding: 18px 20px;
+  width: 280px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: fadeInUp 0.4s ease forwards;
+  font-size: 1rem;
+  line-height: 1.6;
+  z-index: 100;
+}
+
+.rules-box:hover .rules-popup {
+  display: block;
+}
+
+.rules-popup h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.rules-popup ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.rules-popup li {
+  margin-bottom: 8px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
