@@ -7,7 +7,7 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #FEFBE3;
+  background-color: rgb(254, 244, 147);
   color: rgb(255, 247, 15);
   overflow-x: hidden;
 }
@@ -22,15 +22,48 @@ body, html {
   position: relative;
 }
 
-h1 {
-  font-size: 3.5em;
-  margin-bottom: 10px;
-  text-align: center;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+/* === Fancy Heading === */
+.fancy-heading {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+.fancy-heading span {
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #222;
+  background-color: #ffeb3b;
+  border-radius: 10px;
+  transform: rotate(var(--angle));
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.fancy-heading span:nth-child(odd) {
+  background-color: #ffb300;
+}
+
+.fancy-heading span:hover {
+  transform: scale(1.1);
+}
+
+.fancy-heading span:nth-child(odd) {
+  background-color: #ffb300;
+}
+
+.fancy-heading span:hover {
+  transform: scale(1.1) rotate(0deg);
+}
+
+/* === Setup and Controls === */
 .setup, .controls {
-  background: rgba(111, 110, 28, 0.764);
+  background: rgba(254, 165, 46, 0.764);
   padding: 30px 20px;
   border-radius: 20px;
   margin: 30px auto 0;
@@ -78,6 +111,7 @@ button:hover {
   background-color: #0077cc;
 }
 
+/* === Game Board === */
 #gameBoard {
   display: grid;
   gap: 4px;
@@ -132,11 +166,6 @@ button:hover {
   text-align: center;
 }
 
-@keyframes flash {
-  0% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
 .hidden {
   display: none;
 }
@@ -146,14 +175,87 @@ button:hover {
   to { transform: scale(1); opacity: 1; }
 }
 
+@keyframes flash {
+  0% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* ==== Rules Box ==== */
+.rules-box {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+  z-index: 99;
+  background-color: rgb(26 72 127 / 92%);
+  padding: 18px 28px;
+  border-radius: 16px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.rules-box:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.rules-popup {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #ffffff;
+  color: #222;
+  padding: 25px 30px;
+  width: 360px;
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  display: none;
+  animation: fadeInUp 0.4s ease forwards;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  z-index: 100;
+}
+
+.rules-box:hover .rules-popup {
+  display: block;
+}
+
+.rules-popup h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.rules-popup ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.rules-popup li {
+  margin-bottom: 10px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive Adjustments === */
 @media (max-width: 768px) {
   .cell {
     width: 50px;
     height: 50px;
-  }
-
-  h1 {
-    font-size: 2.2rem;
   }
 
   .setup, .controls {
@@ -169,75 +271,30 @@ button:hover {
     right: 5%;
     font-size: 1rem;
   }
-}
 
-/* ==== Rules Styling ==== */
+  .rules-box {
+    font-size: 1.5rem;
+    padding: 16px 22px;
+  }
+}
+/* Make Rules Box Bigger */
 .rules-box {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  cursor: pointer;
-  z-index: 99;
-  background-color: rgb(26 72 127 / 82%);
-  padding: 12px 20px;
-  border-radius: 12px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  font-size: 1.3rem;
-  color: #fff;
-  font-weight: 500;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.rules-box:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+  font-size: 1.6rem;
+  padding: 18px 28px;
+  border-radius: 16px;
 }
 
 .rules-popup {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  background-color: #fff;
-  color: #333;
-  padding: 18px 20px;
-  width: 280px;
-  border-radius: 12px;
-  text-align: left;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  display: none;
-  animation: fadeInUp 0.4s ease forwards;
-  font-size: 1rem;
-  line-height: 1.6;
-  z-index: 100;
-}
-
-.rules-box:hover .rules-popup {
-  display: block;
+  width: 360px;
+  padding: 22px 24px;
+  font-size: 1.15rem;
+  line-height: 1.8;
 }
 
 .rules-popup h3 {
-  margin-top: 0;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.rules-popup ul {
-  padding-left: 18px;
-  margin: 0;
+  font-size: 1.6rem;
 }
 
 .rules-popup li {
-  margin-bottom: 8px;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-bottom: 12px;
 }

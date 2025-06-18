@@ -1,23 +1,16 @@
 let board = [], rows, cols;
 let currentPlayer = 'blue';
 let mode = 'pvp';
-let difficulty = 'medium';
 let orientation = { red: '', blue: '' };
-let scores = { blue: 0, red: 0 };
 let gameOver = false;
 
 $(document).ready(() => {
   $('#mode').on('change', function () {
-    if ($(this).val() === 'ai') {
-      $('#difficultyContainer').show();
-    } else {
-      $('#difficultyContainer').hide();
-    }
+    // No difficulty container shown anymore
   }).trigger('change');
 
   $('#startBtn').click(() => {
     mode = $('#mode').val();
-    difficulty = $('#difficulty').val();
     rows = parseInt($('#rows').val());
     cols = parseInt($('#cols').val());
 
@@ -33,8 +26,6 @@ $(document).ready(() => {
   });
 
   $('#restartBtn').click(() => {
-    scores = { blue: 0, red: 0 };
-    updateScore();
     $('.controls').addClass('hidden');
     $('.setup').show();
     $('#gameBoard').empty();
@@ -102,8 +93,6 @@ function switchPlayer() {
   if (!hasMoves(opponent)) {
     $('#status').html(`<span class="winner-text">🎉 ${capitalize(currentPlayer)} wins the game! 🎉</span>`);
     $('#winSound')[0].play();
-    scores[currentPlayer]++;
-    updateScore();
     gameOver = true;
     return;
   }
@@ -115,8 +104,8 @@ function switchPlayer() {
 }
 
 function aiMove() {
-  let depth = difficulty === 'easy' ? 1 : difficulty === 'medium' ? 3 : 5;
-  let best = minimax(board, 'red', depth, -Infinity, Infinity);
+  const depth = 5; // Hard difficulty
+  const best = minimax(board, 'red', depth, -Infinity, Infinity);
   if (best && best.move && !gameOver) {
     const [r, c] = best.move;
     makeMove(r, c, 'red');
@@ -124,6 +113,29 @@ function aiMove() {
     switchPlayer();
   }
 }
+$(document).ready(() => {
+  $('#player1Orientation').on('change', function () {
+    updateRulesText();
+  });
+
+  function updateRulesText() {
+    const p1 = $('#player1Orientation').val();
+    const p2 = p1 === 'horizontal' ? 'vertical' : 'horizontal';
+
+    $('#rulesList').html(`
+      <li>Player 1 places tiles <strong>${capitalize(p1)}</strong>.</li>
+      <li>Player 2 places tiles <strong>${capitalize(p2)}</strong>.</li>
+      <li>Players take turns placing 2-cell dominoes.</li>
+      <li>First player to block the other wins!</li>
+    `);
+  }
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  updateRulesText(); // Call initially on load
+});
 
 function minimax(state, player, depth, alpha, beta) {
   if (depth === 0 || !hasMovesInState(state, player)) {
@@ -195,12 +207,9 @@ function hasMovesInState(state, player) {
 
 function updateStatus() {
   const color = currentPlayer === 'blue' ? '#00aaff' : '#ff4444';
-  $('#status').html(`<span style="color: ${color}; font-weight: bold; font-size: 1.4rem;">${capitalize(currentPlayer)}'s Turn</span>`);
-}
-
-function updateScore() {
-  $('#blueScore').text(scores.blue);
-  $('#redScore').text(scores.red);
+  const symbol = currentPlayer === 'blue' ? '🔵' : '🔴';
+  const dir = capitalize(orientation[currentPlayer]);
+  $('#status').html(`<span style="color: ${color}; font-weight: bold; font-size: 1.4rem;">${symbol} ${capitalize(currentPlayer)}'s Turn — ${dir}</span>`);
 }
 
 function capitalize(str) {

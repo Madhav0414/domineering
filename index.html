@@ -6,40 +6,42 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<body> 
+<body>
   <div class="background">
-    <h1>Domineering Game</h1>
+  <div class="fancy-heading">
+  <span style="--angle: -5deg;">d</span>
+  <span style="--angle: 7deg;">o</span>
+  <span style="--angle: -10deg;">m</span>
+  <span style="--angle: 8deg;">i</span>
+  <span style="--angle: -6deg;">n</span>
+  <span style="--angle: 9deg;">e</span>
+  <span style="--angle: -7deg;">e</span>
+  <span style="--angle: 6deg;">r</span>
+  <span style="--angle: -10deg;">i</span>
+  <span style="--angle: 5deg;">n</span>
+  <span style="--angle: -6deg;">g</span>
+</div>
+
 
     <div class="rules-box">
       Rules
-      <div class="rules-popup">
+      <div class="rules-popup" id="rulesContent">
         <h3>How to Play</h3>
-        <ul>
+        <ul id="rulesList">
           <li>Player 1 places tiles <strong>Horizontally</strong>.</li>
           <li>Player 2 places tiles <strong>Vertically</strong>.</li>
           <li>Players take turns placing 2-cell dominoes.</li>
           <li>First player to block the other wins!</li>
         </ul>
       </div>
-    </div>00
+    </div>
 
     <div class="setup">
       <label for="mode">Game Mode:</label>
       <select id="mode">
         <option value="pvp">Player vs Player</option>
-        <option value="ai">Player vs Computer
-          
-        </option>
+        <option value="ai">Player vs Computer</option>
       </select>
-
-      <div id="difficultyContainer">
-        <label for="difficulty">AI Difficulty:</label>
-        <select id="difficulty">
-          <option value="easy">Easy</option>
-          <option value="medium" selected>Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
 
       <label for="rows">Rows:</label>
       <input type="number" id="rows" value="5" min="3" max="10">
@@ -47,7 +49,7 @@
       <label for="cols">Columns:</label>
       <input type="number" id="cols" value="5" min="3" max="10">
 
-      <label for="player1Orientation">Player 1 Orientation:</label>
+      <label for="player1Orientation">Player 1 Orientation(Blue):</label>
       <select id="player1Orientation">
         <option value="horizontal">Horizontal</option>
         <option value="vertical">Vertical</option>
