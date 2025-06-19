@@ -7,7 +7,7 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  background-color: rgb(254, 244, 147);
+  background-color: rgb(254, 251, 227);
   color: rgb(255, 247, 15);
   overflow-x: hidden;
 }
@@ -63,7 +63,7 @@ body, html {
 
 /* === Setup and Controls === */
 .setup, .controls {
-  background: rgba(254, 165, 46, 0.764);
+  background: #F4A52d;
   padding: 30px 20px;
   border-radius: 20px;
   margin: 30px auto 0;
@@ -99,7 +99,7 @@ button {
   padding: 12px 25px;
   margin-top: 20px;
   font-size: 18px;
-  background-color: #00aaff;
+  background-color:rgb(26, 72, 127, 0.92);
   color: white;
   border: none;
   border-radius: 8px;
@@ -187,7 +187,7 @@ button:hover {
   right: 25px;
   cursor: pointer;
   z-index: 99;
-  background-color: rgb(26 72 127 / 92%);
+  background-color: rgba(26, 72, 127, 0.92);
   padding: 18px 28px;
   border-radius: 16px;
   transition: transform 0.3s ease, background-color 0.3s ease;
