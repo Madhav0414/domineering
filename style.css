@@ -69,7 +69,7 @@ body, html {
   margin: 30px auto 0;
   width: 100%;
   max-width: 850px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 18px rgb(0,0,0 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,10 +117,10 @@ button:hover {
   gap: 4px;
   margin: 20px auto;
   justify-content: center;
-  background-color: #f9d423;
+  background-color: #F4A52d;
   padding: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
   width: fit-content;
   max-width: 100%;
   overflow-x: auto;
@@ -195,7 +195,7 @@ button:hover {
   color: #fff;
   font-weight: 600;
   backdrop-filter: blur(8px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(234, 231, 231, 0.4);
 }
 
 .rules-box:hover {
