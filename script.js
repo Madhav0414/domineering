@@ -206,11 +206,24 @@ function hasMovesInState(state, player) {
 }
 
 function updateStatus() {
-  const color = currentPlayer === 'blue' ? '#00aaff' : '#ff4444';
-  const symbol = currentPlayer === 'blue' ? '🔵' : '🔴';
-  const dir = capitalize(orientation[currentPlayer]);
-  $('#status').html(`<span style="color: ${color}; font-weight: bold; font-size: 1.4rem;">${symbol} ${capitalize(currentPlayer)}'s Turn — ${dir}</span>`);
+  const status = $('#status');
+  status.empty();
+
+  const indicator = $('<div>').addClass('turn-indicator');
+
+  const box1 = $('<div>').addClass('turn-box').addClass(currentPlayer);
+  const box2 = $('<div>').addClass('turn-box').addClass(currentPlayer);
+
+  if (orientation[currentPlayer] === 'horizontal') {
+    indicator.addClass('horizontal');
+  } else {
+    indicator.addClass('vertical');
+  }
+
+  indicator.append(box1, box2);
+  status.append(indicator);
 }
+
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);

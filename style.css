@@ -63,7 +63,7 @@ body, html {
 
 /* === Setup and Controls === */
 .setup, .controls {
-  background: #F4A52d;
+  background: #ffeb3b;
   padding: 30px 20px;
   border-radius: 20px;
   margin: 30px auto 0;
@@ -129,7 +129,7 @@ button:hover {
 .cell {
   width: 70px;
   height: 70px;
-  background: #fff8c4;
+  background: #fefbe3;
   border: 1px solid #de9517;
   transition: transform 0.2s, background-color 0.3s;
   border-radius: 8px;
@@ -142,13 +142,42 @@ button:hover {
 .hover-preview {
   background-color: rgba(0, 255, 255, 0.4) !important;
 }
+.turn-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.turn-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.turn-box.blue {
+  background-color: #25b7d9;
+}
+
+.turn-box.red {
+  background-color: #f4832c;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
 
 .blue {
-  background-color: rgba(0, 170, 255, 0.9);
+  background-color: #25b7d9;
 }
 
 .red {
-  background-color: rgba(255, 68, 68, 0.9);
+  background-color: #f4832c;
 }
 
 .placed {
