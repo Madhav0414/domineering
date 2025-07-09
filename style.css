@@ -8,7 +8,7 @@ body, html {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
   background-color: rgb(254, 251, 227);
-  color: rgb(255, 247, 15);
+  color: #FEF494;
   overflow-x: hidden;
 }
 
@@ -63,7 +63,7 @@ body, html {
 
 /* === Setup and Controls === */
 .setup, .controls {
-  background: #ffeb3b;
+  background: #FEF494;
   padding: 30px 20px;
   border-radius: 20px;
   margin: 30px auto 0;
